@@ -8,6 +8,10 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import android.widget.TextView;
+
+import com.gpstracker.client.R;
+
 public class GpsDataSender {
 
 	private final String NAMESPACE = "http://webservice.gpstracker.com/";
@@ -15,40 +19,48 @@ public class GpsDataSender {
 	private final String SOAP_ACTION = "http://services-gpstrackerqa.rhcloud.com/gpsTracker/gpsTracker";
 	private final String METHOD_NAME = "gpsLocationRQ";
 
-	String latitudeValue = "123.456";
-	String longitudeValue = "987.654";
-
 	public static void main(String[] args) {
 		new GpsDataSender().sendGPSData(123.23, 456.34);
 	}
 
-	public String sendGPSData(Double longtitude, Double latitude) {
-		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-		SoapObject gpsLocation = new SoapObject(NAMESPACE, "gpsLocation");
-		gpsLocation.addProperty("latitude", latitudeValue);
-		gpsLocation.addProperty("longitude", longitudeValue);
-		request.addSoapObject(gpsLocation);
+	public String sendGPSData(final Double longitude, final Double latitude) {
 
-		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-		envelope.setOutputSoapObject(request);
-		envelope.dotNet = false;
-		envelope.implicitTypes = true;
+		// Use a future response.
 
-		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
-		androidHttpTransport.debug = true;
-		SoapPrimitive response = null;
-		String requestDump = null;
-		String responseDump = null;
-		try {
-			androidHttpTransport.call(SOAP_ACTION, envelope);
-			requestDump = androidHttpTransport.requestDump;
-			responseDump = androidHttpTransport.responseDump;
-			response = (SoapPrimitive) envelope.getResponse();
-		} catch (Exception e) {
-			responseDump = e.toString();
-		}
+		Thread networkThread = new Thread() {
+			SoapPrimitive response = null;
 
-		return requestDump + responseDump;
+			public void run() {
+				// Create SOAP request
+				SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+				SoapObject gpsLocation = new SoapObject("", "gpsLocation");
+				gpsLocation.addProperty("latitude", String.valueOf(latitude));
+				gpsLocation.addProperty("longitude", String.valueOf(longitude));
+				request.addSoapObject(gpsLocation);
+
+				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+				envelope.setOutputSoapObject(request);
+				envelope.dotNet = false;
+				envelope.implicitTypes = true;
+
+				HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+				androidHttpTransport.debug = true;
+				String requestDump = null;
+				String responseDump = null;
+
+				try {
+					androidHttpTransport.call(SOAP_ACTION, envelope);
+					requestDump = androidHttpTransport.requestDump;
+					responseDump = androidHttpTransport.responseDump;
+					response = (SoapPrimitive) envelope.getResponse();
+				} catch (Exception e) {
+					responseDump = e.toString();
+				}
+			}
+		};
+		networkThread.start();
+
+		return "response";
 	}
 
 }
