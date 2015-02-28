@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Parent Project Maven coordinates -->
+	<parent>
+		<groupId>com.gpstracker.client</groupId>
+		<artifactId>gpstracker-client</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<!-- Project Maven coordinates -->
+	<artifactId>gpstracker-client-data-sender-jaxws-impl</artifactId>
+
+	<!-- Project Information -->
+	<name>GPS Tracking Client Application - Message Sender Module</name>
+	<description>The project module defines message sending functionality.</description>
+
+	<!-- Packaging Output -->
+	<packaging>jar</packaging>
+
+	<!-- Project Properties -->
+	<properties>
+		<!--Application -->
+		<javax-ws.version>2.2.10</javax-ws.version>
+		<!-- Building -->
+		<jvnet-jax-ws.version>2.3</jvnet-jax-ws.version>
+	</properties>
+ 	
+	<!-- Dependency Management -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax.xml.ws</groupId>
+				<artifactId>jaxws-api</artifactId>
+				<version>${javax-ws.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Module Dependencies -->
+	<dependencies>	
+		<dependency>
+			<groupId>javax.xml.ws</groupId>
+			<artifactId>jaxws-api</artifactId>
+		</dependency>		
+	</dependencies>
+
+	<!-- Module Build Settings -->
+	<build>
+		<pluginManagement>
+			<plugins>				
+				<plugin>
+					<groupId>org.jvnet.jax-ws-commons</groupId>
+					<artifactId>jaxws-maven-plugin</artifactId>
+					<version>${jvnet-jax-ws.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.sun.xml.ws</groupId>
+							<artifactId>jaxws-tools</artifactId>
+							<version>${javax-ws.version}</version>
+						</dependency>
+					</dependencies>
+					<executions>
+						<execution>
+							<id>import-webservice-wsdl</id>
+							<goals>
+								<goal>wsimport</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<!-- Import WSDL file -->
+			<plugin>
+				<groupId>org.jvnet.jax-ws-commons</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<configuration>
+					<packageName>com.gpstracker.client.autogen</packageName>	                
+	                <wsdlFiles>
+	                    <wsdlFile>${basedir}/src/main/resources/wsdl/GpsLocationServiceService.wsdl</wsdlFile>
+	                </wsdlFiles>
+	                <!-- 
+	            	<wsdlLocation>http://services-gpstrackerqa.rhcloud.com/gpsTracker/gpsTracker?wsdl</wsdlLocation>
+	                 -->
+	                <!-- 
+	                <wsdlLocation>http://localhost:8080/gpsTracker/gpsTracker?wsdl</wsdlLocation>
+	                -->
+					<sourceDestDir>src/main/java</sourceDestDir>
+				</configuration>
+			</plugin>			
+		</plugins>
+
+	</build>
+
+</project>

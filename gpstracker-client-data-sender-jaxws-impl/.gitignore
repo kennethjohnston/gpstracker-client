@@ -1,0 +1,7 @@
+/target
+/src/main/java/com/gpstracker/client/autogen
+/.settings
+/.directory
+/.project
+/.classpath
+*.log

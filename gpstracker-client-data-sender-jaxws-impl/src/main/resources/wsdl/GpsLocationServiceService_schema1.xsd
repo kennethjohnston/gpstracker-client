@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:tns="http://webservice.server.gpstracker.com/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+	targetNamespace="http://webservice.server.gpstracker.com/">
+	<xs:element name="gpsLocationRQ" type="tns:gpsLocationRQ" />
+	<xs:element name="gpsLocationRQResponse" type="tns:gpsLocationRQResponse" />
+	<xs:complexType name="gpsLocationRQ">
+		<xs:sequence>
+			<xs:element name="gpsLocation" type="tns:gpsLocation"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="gpsLocation">
+		<xs:complexContent>
+			<xs:extension base="tns:externalEntity">
+				<xs:sequence>
+					<xs:element name="latitude" type="xs:string" minOccurs="0" />
+					<xs:element name="longitude" type="xs:string" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="externalEntity" abstract="true">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:complexType name="gpsLocationRQResponse">
+		<xs:sequence>
+			<xs:element name="return" type="xs:boolean" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+
