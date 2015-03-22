@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView
+    android:id="@+id/text_view"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    />
+
+<Button
+   android:id="@+id/buttonUpdateSettings"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@+string/button_update_settings_text"
+   />
+
+<Button
+   android:id="@+id/buttonSettingsBack"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@+string/button_settings_back_text"
+   />
+
+</LinearLayout>

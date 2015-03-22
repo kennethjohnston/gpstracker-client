@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView
+    android:id="@+id/text_view"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    />
+
+<EditText
+    android:id="@+id/textInputPersonName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text="@+string/text_default_personNameInputInstructions"
+	/>
+
+<EditText
+    android:id="@+id/textInputPhoneNumber"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="phone" 
+    android:text="@+string/text_default_phoneNumberInputInstructions"
+    />
+
+<EditText
+    android:id="@+id/textInputEmailAddress"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textEmailAddress"
+    android:text="@+string/text_default_emailAddressInputInstructions"
+    />
+
+<EditText
+    android:id="@+id/textInputUserName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10" 
+    android:text="@+string/text_default_userNameInputInstructions"
+    />
+
+<EditText
+    android:id="@+id/textInputPassword"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPassword"
+    android:text="@+string/text_default_passwordInputInstructions"
+    />
+
+<Button
+   android:id="@+id/buttonRegisterUser"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@+string/button_register_user_text"
+   />
+
+<Button
+   android:id="@+id/buttonRegisterUserBack"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@+string/button_register_user_back_text"
+   />
+
+</LinearLayout>

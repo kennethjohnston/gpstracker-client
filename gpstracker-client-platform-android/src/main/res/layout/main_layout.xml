@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-<TextView
-    android:id="@+id/text_view"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    />
+    android:orientation="vertical"
+    android:background="@color/white">
 
-<Button
-   android:id="@+id/buttonSendGPS"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="@+string/button_send_gps_text"
-   />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </GridLayout>
+
+    <Button
+        android:id="@+id/buttonLogIn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.04"
+        android:background="@color/blue"
+        android:text="@+string/button_login_text" />
+    
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:text="@+string/button_register_text" />
+    
+    <Button
+        android:id="@+id/buttonLoggedIn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@+string/button_goto_logged_in_text" />
+
+    <Button
+        android:id="@+id/buttonSendGPS"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@+string/button_send_gps_text" />
 
 </LinearLayout>
